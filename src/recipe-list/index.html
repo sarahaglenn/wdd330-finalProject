@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spice of Life</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body>
+    <header class="header"></header>
+    <main class="divider">
+      <section id="recipe-list">
+        <h2 class="cuisine"></h2>
+
+        <label for="sort-by">Sort By:</label>
+        <select id="sort-by">
+          <option value="Name A - Z">Name A - Z</option>
+          <option value="Name Z - A">Name Z - A</option>
+        </select>
+
+        <ul class="recipe-list"></ul>
+      </section>
+    </main>
+    <footer class="footer"></footer>
+  </body>
+  <script src="/js/recipe-list.mjs" type="module"></script>
+</html>
