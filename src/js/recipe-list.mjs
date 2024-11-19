@@ -2,11 +2,11 @@ import { getRecipesByCategory } from './externalServices.mjs';
 import { getLocalStorage, getParam, renderListWithTemplate } from './utils.mjs';
 
 const category = getLocalStorage('category');
-console.log('category is', category);
+// console.log('category is', category);
 const value = getParam(category);
-const food = getParam('cuisine');
-console.log('food is:', food);
-console.log('value is', value);
+// const food = getParam('cuisine');
+// console.log('food is:', food);
+// console.log('value is', value);
 const title = document.querySelector('h2');
 title.innerHTML = `${value} Recipes`;
 

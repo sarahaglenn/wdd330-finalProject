@@ -22,4 +22,168 @@ body {
 }
 img {
   max-width: 100%;
+  height: auto;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+}
+.logo {
+  display: flex;
+}
+.logo p {
+  align-self: flex-end;
+  color: var(--secondary-color);
+}
+.search-div {
+  margin: 1em 1em 0 0;
+}
+h1 {
+  text-align: center;
+}
+.mission {
+  display: flex;
+  gap: 1em;
+  margin: 1em 5em;
+}
+.mission img {
+  flex-shrink: 0;
+  width: 400px;
+  height: auto;
+  flex-grow: 0;
+  align-self: center;
+  box-shadow: 2px 2px 5px var(--secondary-color);
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.purpose {
+  margin: 2em;
+}
+hr {
+  max-width: 75%;
+  margin: 50px auto;
+}
+h2 {
+  margin: 20px 30px;
+}
+.cuisine-icons-grid img,
+.diet-icons-grid img {
+  width: 200px;
+  height: auto;
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+.cuisine-categories,
+.diet-categories {
+  max-width: 85%;
+  margin: 60px auto;
+}
+.cuisine-icons-grid,
+.diet-icons-grid {
+  margin: 0px auto;
+  max-width: 80%;
+  display: flex;
+  justify-content: space-around;
+}
+
+/* Newsletter styling */
+.subscribe {
+  padding: 0.5em 2em;
+  background-color: var(--secondary-color);
+  color: white;
+  margin: 50px auto;
+  display: block;
+  border: 0;
+  font-size: var(--large-font);
+  cursor: pointer;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  box-shadow: 3px 3px 2px var(--dark-gray);
+}
+.newsletter {
+  padding: 2rem;
+}
+dialog div {
+  display: flex;
+  justify-content: space-between;
+}
+dialog {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 5px;
+  box-shadow: 0 0 7px;
+  border: var(--secondary-color);
+}
+::backdrop {
+  background-color: rgba(162, 162, 162, 0.695);
+}
+#closeBtn {
+  padding: 0;
+  width: 44px;
+  height: 44px;
+  margin-left: auto;
+  margin-right: -8px;
+}
+.newsletter dialog form fieldset label {
+  display: block;
+}
+.required {
+  color: red;
+}
+.newsletter dialog form fieldset input {
+  margin: 0.5rem;
+}
+.newsletter dialog form {
+  padding: 1rem;
+}
+input:invalid {
+  border: 2px solid red;
+}
+input:valid {
+  border: 2px solid green;
+}
+#submitBtn {
+  padding: 0.8rem;
+  margin: 1rem auto;
+  display: block;
+  background-color: var(--secondary-color);
+  color: white;
+  border: 1px solid darkgray;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+.footer {
+  display: flex;
+  justify-content: space-around;
+  max-width: 100%;
+  margin: 10px auto;
+  padding-bottom: 30px;
+}
+.footer-logo {
+  display: flex;
+  gap: 1em;
+  align-items: flex-end;
+}
+.footer-logo .address {
+  font-size: var(--small-font); /* Make the address text more compact */
+  line-height: 1.2; /* Reduce the spacing between address lines */
+  color: var(--dark-gray); /* Ensure consistent text color */
+}
+.footer-logo .address p {
+  margin: 0 0 10px 0;
+}
+.footer .socials,
+.footer .copyright {
+  align-self: flex-end;
+  margin: 0 0 10px 0;
 }
