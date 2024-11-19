@@ -24,6 +24,9 @@ img {
   max-width: 100%;
   height: auto;
 }
+a {
+  cursor: pointer;
+}
 header {
   display: flex;
   justify-content: space-between;
@@ -36,15 +39,31 @@ header {
   color: var(--secondary-color);
 }
 .search-div {
-  margin: 1em 1em 0 0;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: auto;
+  width: 50%;
+  margin-top: 1rem;
+  padding-right: 10px;
+}
+#search-bar {
+  height: 30%;
+  width: 60%;
+}
+#search-button {
+  height: 30%;
+  margin: 0;
+  padding: 5px;
+  font-size: 1rem;
 }
 h1 {
   text-align: center;
 }
 .mission {
+  max-width: 70%;
   display: flex;
   gap: 1em;
-  margin: 1em 5em;
+  margin: 1em auto;
 }
 .mission img {
   flex-shrink: 0;
@@ -68,6 +87,11 @@ hr {
 }
 h2 {
   margin: 20px 30px;
+  text-transform: capitalize;
+}
+.cuisine {
+  text-align: center;
+  font-size: 2em;
 }
 .cuisine-icons-grid img,
 .diet-icons-grid img {
@@ -162,6 +186,34 @@ input:valid {
   font-size: 1.3rem;
   cursor: pointer;
 }
+/* Recipe list */
+.sort {
+  margin: 50px 0 20px 30px;
+}
+.recipe-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  list-style-type: none;
+  padding: 0;
+}
+.recipe-list a {
+  text-decoration: none;
+  color: var(--dark-grey);
+}
+.recipe-card {
+  flex: 1 1 45%;
+  margin: 1em;
+  padding: 0.75em;
+  border: 1px solid rgba(128, 128, 128, 0.534);
+  max-width: 250px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.recipe-card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 .footer {
   display: flex;
   justify-content: space-around;
@@ -175,9 +227,9 @@ input:valid {
   align-items: flex-end;
 }
 .footer-logo .address {
-  font-size: var(--small-font); /* Make the address text more compact */
-  line-height: 1.2; /* Reduce the spacing between address lines */
-  color: var(--dark-gray); /* Ensure consistent text color */
+  font-size: var(--small-font);
+  line-height: 1.2;
+  color: var(--dark-gray);
 }
 .footer-logo .address p {
   margin: 0 0 10px 0;

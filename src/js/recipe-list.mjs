@@ -1,5 +1,5 @@
 import { getRecipesByCategory } from './externalServices.mjs';
-import { getLocalStorage, getParam, renderListWithTemplate } from './utils.mjs';
+import { getLocalStorage, getParam, loadHeaderFooter, renderListWithTemplate } from './utils.mjs';
 
 const category = getLocalStorage('category');
 // console.log('category is', category);
@@ -31,6 +31,7 @@ function recipeCardTemplate(recipeData) {
 }
 
 listRecipes('.recipe-list', value);
+loadHeaderFooter();
 
 
 
