@@ -4,7 +4,7 @@
   /* colors */
   --primary-color: #7bb661;
   --secondary-color: #275d27;
-  --accent-color: #ef6f6c;
+  --accent-color: #ea7434ea;
   --dark-gray: #3c3c3c;
   /* sizes */
   --font-base: 18px;
@@ -19,12 +19,14 @@ body {
   font-family: var(--font-body);
   font-size: var(--font-base);
   color: var(--dark-gray);
+  max-width: 90%;
+  margin: 0 auto;
 }
 img {
   max-width: 100%;
   height: auto;
 }
-a {
+a, button {
   cursor: pointer;
 }
 header {
@@ -49,6 +51,13 @@ header {
 #search-bar {
   height: 30%;
   width: 60%;
+  font-size: var(--small-font);
+  border: 2px solid var(--primary-color);
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
 }
 #search-button {
   height: 30%;
@@ -56,11 +65,13 @@ header {
   padding: 5px;
   font-size: 1rem;
 }
+
 h1 {
   text-align: center;
+  color: var(--secondary-color);
 }
 .mission {
-  max-width: 70%;
+  max-width: 80%;
   display: flex;
   gap: 1em;
   margin: 1em auto;
@@ -213,6 +224,63 @@ input:valid {
 .recipe-card:hover {
   transform: scale(1.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+/* Recipe details page  */
+.recipe-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+h3 {
+  text-align: center;
+  margin: 5px auto;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#recipeImage {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  box-shadow: 2px 2px 5px var(--dark-gray);
+  border-radius: 5px;
+}
+.button-container {
+  display: flex;
+  gap: 20px;
+}
+.button-container button {
+  height: 44px;
+  background-color: var(--accent-color);
+  font-size: var(--font-base);
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+#recipeSummary {
+  max-width: 90%; 
+  margin: 20px auto; 
+  /* line-height: 1.6;  */
+}
+.ingredients-list {
+  line-height: 1.5;
+  list-style: disc;
+}
+#recipeInstructions {
+  line-height: 1.3;
+}
+.recommendedRecipes {
+  display: flex;
+  justify-content: space-around;
+}
+.recommendedRecipes li h4 {
+  color: var(--dark-gray);
+  text-decoration: underline var(--accent-color);
 }
 .footer {
   display: flex;

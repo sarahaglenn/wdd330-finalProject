@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spice of Life</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body>
+    <header class="header"></header>
+    <main class="divider">
+      <section class="recipe-detail">
+        <h1 id="recipeName"></h1>
+
+        <h3 class="divider" id="recipeReadyTime"></h3>
+
+        <h3 class="divider" id="recipeServings"></h3>
+
+        <div class="container">
+        <img class="divider" id="recipeImage" src="" alt="" />
+          <div class="button-container">
+        <a id="recipeSourceLink" href=""><button id="recipeSource">Recipe Source</button></a>
+
+        <button id="addToFavorites">Add to Favorites</button>
+        </div>
+        </div>
+        <h4 id="recipePrepTime"></h4>
+
+        <h4 id="recipeCookTime"></h4>
+        
+        <div class="ingredients-container">
+          <h2><b>Ingredients:</b></h2>
+          <ul class="ingredients-list"></ul>
+        </div>
+
+        <p id="recipeInstructions"></p>
+
+        <p id="recipeSummary"></p>
+      </section>
+      <section class="recs">
+        <h3>You might also like...</h3>
+        <ul class="recommendedRecipes"></ul>
+      </section>
+    </main>
+    <footer class="footer"></footer>
+    <script src="/js/recipe-details.mjs" type="module"></script>
+    <script src="/js/search.mjs" type="module"></script>
+  </body>
+</html>

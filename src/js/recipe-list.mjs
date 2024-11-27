@@ -1,5 +1,6 @@
 import { getRecipesByCategory, getRecipesByKeyword } from './externalServices.mjs';
 import { getLocalStorage, getParam, loadHeaderFooter, renderListWithTemplate } from './utils.mjs';
+import { recipeCardTemplate } from './templates.mjs';
 
 loadHeaderFooter();
 
@@ -34,20 +35,5 @@ async function listRecipesByKeyword(selector, keyword) {
   renderListWithTemplate(recipeCardTemplate, element, recipes);
 }
 
-function recipeCardTemplate(recipeData) {
-  let imageSrc;
-  if (recipeData.Image) {
-    imageSrc = recipeData.Image;
-  } else imageSrc = `https://spoonacular.com/recipeImages/${recipeData.id}-556x370.${recipeData.imageType}`;
-    return `</li>
-    <li class='recipe-card'>
-    <a href="/recipe-details/index.html?recipe=${recipeData.Id}">
-    <img src="${imageSrc}"
-    alt="${recipeData.title}"
-    />
-    <h2 class="recipe-name">${recipeData.title}</h2>
-    </a>
-    </li>
-    `;
-}
+
 
