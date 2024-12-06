@@ -46,8 +46,10 @@ export async function loadHeaderFooter() {
   const header = document.querySelector('.header');
   const footer = document.querySelector('.footer');
 
-  renderWithTemplate(headerTemplateFn, header);
-  renderWithTemplate(footerTemplateFn, footer);
+  await renderWithTemplate(headerTemplateFn, header);
+  await renderWithTemplate(footerTemplateFn, footer);
+
+  return Promise.resolve();
 }
 
 export function getParam(param) {
@@ -61,4 +63,20 @@ export function createErrorMsg(msg) {
   return `<div class="error-div">
             <p class="error-msg">${msg}<p/>
          <div/>`;
+}
+
+export function sortRecipes(recipes, sortBy) {
+  const sortedRecipes = [...recipes];
+  switch (sortBy) {
+    case 'Name A - Z':
+      return sortedRecipes.sort((a, b) => a.title.localeCompare(b.title));
+    case 'Name Z - A':
+      return sortedRecipes.sort((a, b) => b.title.localeCompare(a.title));
+    // case 'Servings(low to high': recipe data doesn't include servings
+    //   return sortedRecipes.sort((a, b) => a.servings - b.servings);
+    // case 'Servings(high to low)':
+    //   return sortedRecipes.sort((a, b) => b.servings - a.servings);
+    default:
+      return sortedRecipes;
+  }
 }

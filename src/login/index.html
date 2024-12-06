@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spice of Life | Home</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+  <div class="loginWrapper">
+    <header class="header"></header>
+    <main class="loginMain">
+      <h1>Login</h1>
+      <h3 class="login">Please enter your username and password.</h3>
+      <form class="login">
+        <label for="username">Username: </label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password: </label>
+        <input type="password" id="password" name="password" required>
+        <button id="submitLogin" type="submit">Login</button>
+      </form>
+      <p id="error"></p>
+    </main>
+  </div>
+  <footer class="footer"></footer>
+  <script src="/js/search.mjs" type="module"></script>
+  <script src="/js/login.mjs" type="module"></script>
+</body>
+
+</html>

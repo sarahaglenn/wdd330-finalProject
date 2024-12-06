@@ -15,31 +15,58 @@
   box-sizing: border-box;
 }
 body {
-  margin: 0;
+  margin: 0 auto;
   font-family: var(--font-body);
   font-size: var(--font-base);
-  color: var(--dark-gray);
+  color: var(--dark-grey);
   max-width: 90%;
-  margin: 0 auto;
+  height: 100%;
 }
 img {
   max-width: 100%;
   height: auto;
 }
-a, button {
+a,
+button {
   cursor: pointer;
 }
 header {
   display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+}
+.hidden {
+  /* Hide favorites button when not logged in */
+  display: none;
+}
+.login-and-favorites {
+  margin-top: 20px;
+  margin-right: 0;
+  align-self: flex-end;
+  background-color: var(--secondary-color);
+  width: 100%;
+  text-align: right;
+  padding: 0.5rem;
+}
+.login-and-favorites a {
+  color: white;
+  padding: 0.5rem;
+}
+.login-and-favorites a:hover {
+  background-color: var(--primary-color);
+}
+.bottom-row {
+  display: flex;
   justify-content: space-between;
 }
 .logo {
-  display: flex;
+  align-self: flex-start;
 }
+/*
 .logo p {
   align-self: flex-end;
   color: var(--secondary-color);
-}
+} */
 .search-div {
   display: flex;
   justify-content: flex-end;
@@ -47,9 +74,12 @@ header {
   width: 50%;
   margin-top: 1rem;
   padding-right: 10px;
+  align-self: flex-end;
+  position: absolute;
+  top: 50px;
+  right: 5px;
 }
 #search-bar {
-  height: 30%;
   width: 60%;
   font-size: var(--small-font);
   border: 2px solid var(--primary-color);
@@ -60,7 +90,6 @@ header {
   -o-border-radius: 3px;
 }
 #search-button {
-  height: 30%;
   margin: 0;
   padding: 5px;
   font-size: 1rem;
@@ -75,13 +104,14 @@ h1 {
   display: flex;
   gap: 1em;
   margin: 1em auto;
+  /* flex-wrap: wrap; */
 }
 .mission img {
-  flex-shrink: 0;
-  width: 400px;
+  max-width: 400px;
   height: auto;
-  flex-grow: 0;
+  /* flex-grow: 0; */
   align-self: center;
+  margin: 0 auto;
   box-shadow: 2px 2px 5px var(--secondary-color);
   border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -90,7 +120,11 @@ h1 {
   -o-border-radius: 5px;
 }
 .purpose {
-  margin: 2em;
+  margin-right: 2em;
+}
+.purpose p {
+  min-width: 300px;
+  text-align: center;
 }
 hr {
   max-width: 75%;
@@ -106,8 +140,9 @@ h2 {
 }
 .cuisine-icons-grid img,
 .diet-icons-grid img {
-  width: 200px;
+  width: 100%;
   height: auto;
+  max-width: 200px;
 }
 ul {
   list-style: none;
@@ -122,10 +157,16 @@ a {
 }
 .cuisine-icons-grid,
 .diet-icons-grid {
-  margin: 0px auto;
-  max-width: 80%;
   display: flex;
-  justify-content: space-around;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.cuisine-icons-grid li,
+.diet-icons-grid li {
+  flex: 1 1 calc(25% - 20px); /* Make each item take up 25% of the space minus the gap */
+  text-align: center;
+  box-sizing: border-box;
 }
 
 /* Newsletter styling */
@@ -213,6 +254,10 @@ input:valid {
   color: var(--dark-grey);
 }
 .recipe-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   flex: 1 1 45%;
   margin: 1em;
   padding: 0.75em;
@@ -220,10 +265,84 @@ input:valid {
   max-width: 250px;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: auto;
 }
 .recipe-card:hover {
   transform: scale(1.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.recipe-card img {
+  width: 100%;
+  height: auto;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+.recipe-card .recipe-name {
+  margin: 0.5rem 0;
+  flex-grow: 1;
+}
+#quick-view-btn {
+  margin-top: auto;
+  height: 44px;
+  background-color: var(--accent-color);
+  font-size: var(--font-base);
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  border: none;
+  transition: background-color 0.3s ease;
+  -webkit-transition: background-color 0.3s ease;
+  -moz-transition: background-color 0.3s ease;
+  -ms-transition: background-color 0.3s ease;
+  -o-transition: background-color 0.3s ease;
+}
+#quick-view-btn:hover {
+  background-color: #ea74347c;
+}
+#quick-view-popup {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  position: fixed;
+  margin: auto;
+  padding: 1rem;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 80%;
+  max-height: 80%;
+  background: white;
+  place-items: center;
+  border: black 2px solid;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 3);
+  overflow-y: auto;
+}
+::backdrop {
+  background-color: rgba(162, 162, 162, 0.695);
+}
+#quick-name {
+  text-align: center;
+  padding-top: 20px;
+}
+#close-quick-details {
+  height: 44px;
+  width: 44px;
+  border: var(--secondary-color) 2px solid;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
 }
 /* Recipe details page  */
 .recipe-detail {
@@ -263,8 +382,8 @@ h3 {
   -o-border-radius: 3px;
 }
 #recipeSummary {
-  max-width: 90%; 
-  margin: 20px auto; 
+  max-width: 90%;
+  margin: 20px auto;
   /* line-height: 1.6;  */
 }
 .ingredients-list {
@@ -276,15 +395,49 @@ h3 {
 }
 .recommendedRecipes {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .recommendedRecipes li h4 {
   color: var(--dark-gray);
   text-decoration: underline var(--accent-color);
 }
-.footer {
+/* Login page */
+.loginWrapper {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  min-height: 85vh;
+}
+.login form {
+  display: block;
+}
+.login label,
+.login input {
+  display: block;
+  width: 60%;
+  padding: 0.5rem;
+}
+.login button {
+  display: block;
+  height: 44px;
+  width: 50%;
+  margin-top: 2rem;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 1.4rem;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+
+.footer {
+  position: relative;
+  bottom: 0;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   max-width: 100%;
   margin: 10px auto;
   padding-bottom: 30px;
@@ -306,4 +459,18 @@ h3 {
 .footer .copyright {
   align-self: flex-end;
   margin: 0 0 10px 0;
+}
+@media (max-width: 950px) {
+  .mission {
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    text-align: center;
+  }
+
+  .mission img {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 1em;
+  }
 }

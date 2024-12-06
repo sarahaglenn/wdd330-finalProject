@@ -1,17 +1,29 @@
 import { getRecipeById, getSimilarRecipes } from './externalServices.mjs';
 import { getParam, setLocalStorage, getLocalStorage, loadHeaderFooter, createErrorMsg } from './utils.mjs';
 import { recommendedTemplate } from './templates.mjs';
+import { checkLogin, loadLoggedInButtons, logout } from './auth.mjs';
 
 let recipe = {};
-loadHeaderFooter();
+loadHeaderFooter().then(() => {
+  if (checkLogin()) loadLoggedInButtons();
+  const logoutBtn = document.getElementById('logout');
+  logoutBtn.addEventListener('click', () => {
+    logout();
+  })
+});
 const recipeId = getParam('recipe');
+
+if (!getLocalStorage('favorites')) {
+  setLocalStorage('favorites', []);
+}
+let favorites = getLocalStorage('favorites');
 
 recipeDetails(recipeId);
 
 async function recipeDetails(id) {
   recipe = await getRecipeById(id);
 
-  if (recipe != undefined) {
+  if (recipe) {
     renderRecipeDetails(recipe);
   } else {
     const main = document.querySelector('main');
@@ -20,13 +32,27 @@ async function recipeDetails(id) {
   }
 }
 
-document.getElementById('addToFavorites').addEventListener('click', addToFavorites);
+document.getElementById('addToFavorites').addEventListener('click', () => {
+  if (!checkLogin()) {
+    alert('Please log in to save to favorites. <br> Click OK to go to login page.>)');
+    const currentUrl = window.location.href;
+    setTimeout(() => {
+      window.location.href = `/login/index.html?redirect=${encodeURIComponent(currentUrl)}}`
+    }, 4000)
+  } else {
+    addToFavorites(recipeId);
+  }
+});
 
 
-function addToFavorites() {
-  // for now maybe just save to local storage
-  //could also create a json and save to it or try to connect database
-  
+function addToFavorites(id) {
+  if (!favorites.includes(id)) {
+    favorites.push(id);
+    setLocalStorage('favorites', favorites);
+    alert('Recipe added to favorites!')
+  } else {
+    alert('This recipe is already in your favorites.')
+  }
 }
 
 function renderRecipeDetails() {

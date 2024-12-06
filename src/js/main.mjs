@@ -1,6 +1,13 @@
 import { loadHeaderFooter, setLocalStorage } from './utils.mjs';
+import { checkLogin, loadLoggedInButtons, logout } from './auth.mjs';
 
-loadHeaderFooter();
+loadHeaderFooter().then(() => {
+  if (checkLogin()) loadLoggedInButtons();
+  const logoutBtn = document.getElementById('logout');
+  logoutBtn.addEventListener('click', () => {
+    logout();
+  })
+});
 
 const italianIcon = document.getElementById('italian');
 const mexicanIcon = document.getElementById('mexican');
