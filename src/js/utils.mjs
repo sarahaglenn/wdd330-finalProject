@@ -40,8 +40,8 @@ export async function renderWithTemplate(templateFn, parentElement, data, callba
 }
 
 export async function loadHeaderFooter() {
-  const headerTemplateFn = loadTemplate('/partials/header.html');
-  const footerTemplateFn = loadTemplate('/partials/footer.html');
+  const headerTemplateFn = loadTemplate('src/partials/header.html');
+  const footerTemplateFn = loadTemplate('src/partials/footer.html');
 
   const header = document.querySelector('.header');
   const footer = document.querySelector('.footer');
