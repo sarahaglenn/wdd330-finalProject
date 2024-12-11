@@ -480,6 +480,7 @@ h3 {
     flex-wrap: wrap;
     align-items: center;
     text-align: center;
+    padding-top: 2rem;
   }
 
   .mission img {
