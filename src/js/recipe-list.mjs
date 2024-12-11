@@ -54,7 +54,7 @@ async function loadRecipesByCategory() {
 }
 
 async function loadRecipesByKeyword(keyword) {
-  recipes = await getRecipesByKeyword(keyword, 20);
+  recipes = await getRecipesByKeyword(keyword, 30);
   sortedRecipes = sortRecipes(recipes, sortBy);
   renderRecipes(recipes);
 }
