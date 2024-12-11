@@ -20,6 +20,7 @@ export function login(username, password) {
     const redirect = getLocalStorage('redirectUrl');
     if (redirect) {
       window.location.href = `${redirect}`;
+      localStorage.setItem('reloadRecipes', 'true');
     } else {
       window.location.href = '../index.html';
     }

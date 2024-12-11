@@ -1,6 +1,7 @@
 import { loadHeaderFooter, setLocalStorage } from './utils.mjs';
 import { checkLogin, loadLoggedInButtons, logout } from './auth.mjs';
 
+setLocalStorage('redirectUrl', window.location.href);
 loadHeaderFooter().then(() => {
   if (checkLogin()) loadLoggedInButtons();
   const logoutBtn = document.getElementById('logout');
@@ -82,6 +83,10 @@ if (submitBtn) {
 
     const form = signupBox.querySelector('form');
     if (form.checkValidity()) {
+
+      const formData = new FormData(form);
+      const formDataObj = Object.fromEntries(formData.entries());
+      console.log(formDataObj);
 
       const thanksMsg = document.createElement('p');
       thanksMsg.textContent = `${form.name.value}, thanks for subscribing to the Spice of Life Newsletter!`;

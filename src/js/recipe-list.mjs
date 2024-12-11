@@ -1,8 +1,9 @@
 import { getRecipeById, getRecipesByCategory, getRecipesByKeyword } from './externalServices.mjs';
-import { getLocalStorage, getParam, loadHeaderFooter, renderListWithTemplate, sortRecipes } from './utils.mjs';
+import { debounce, getLocalStorage, getParam, loadHeaderFooter, renderListWithTemplate, setLocalStorage, sortRecipes } from './utils.mjs';
 import { quickViewTemplate, recipeCardTemplate } from './templates.mjs';
 import { checkLogin, loadLoggedInButtons, logout } from './auth.mjs';
 
+setLocalStorage('redirectUrl', window.location.href);
 loadHeaderFooter().then(() => {
   if (checkLogin()) loadLoggedInButtons();
   const logoutBtn = document.getElementById('logout');
@@ -16,26 +17,34 @@ let recipes = [];
 let sortedRecipes;
 const sortDropdown = document.getElementById('sort-by');
 
-sortDropdown.addEventListener('change', () => {
+ const debouncedSort = debounce(() => {
   sortBy = sortDropdown.value;
   sortedRecipes = sortRecipes(recipes, sortBy);
   renderRecipes(sortedRecipes);
-});
+}, 300);
+
+sortDropdown.addEventListener('change', debouncedSort);
 
 const searchParam = getParam('keyword');
 let categoryValue;
 const category = getLocalStorage('category');
 
-if (searchParam) {
-  const title = document.querySelector('h2');
-  title.innerHTML = `Recipes including '${searchParam}'`;
-  loadRecipesByKeyword(searchParam);
-} else if (category) {
-  categoryValue = getParam(category);
-  const title = document.querySelector('h2');
-  title.innerHTML = `${categoryValue} Recipes`;
-  loadRecipesByCategory();
-  localStorage.removeItem('category');
+if (getLocalStorage('reloadRecipes') === 'true') {
+  localStorage.removeItem('reloadRecipes');
+  initializeRecipes();
+}
+
+function initializeRecipes() {
+  if (searchParam) {
+    const title = document.querySelector('h2');
+    title.innerHTML = `Recipes including '${searchParam}'`;
+    loadRecipesByKeyword(searchParam);
+  } else if (category) {
+    categoryValue = getParam(category);
+    const title = document.querySelector('h2');
+    title.innerHTML = `${categoryValue} Recipes`;
+    loadRecipesByCategory();
+  }
 }
 
 async function loadRecipesByCategory() {
@@ -53,6 +62,24 @@ async function loadRecipesByKeyword(keyword) {
 function renderRecipes(recipeList) {
   const element = document.querySelector('.recipe-list');
   renderListWithTemplate(recipeCardTemplate, element, recipeList);
+}
+
+if (!getLocalStorage('favorites')) setLocalStorage('favorites', []);
+function addToFavorites(id) {
+  const favorites = getLocalStorage('favorites');
+  if (!favorites.includes(id)) {
+    favorites.push(id);
+    setLocalStorage('favorites', favorites);
+    alert('Recipe added to favorites!')
+  } else {
+    alert('This recipe is already in your favorites.')
+  }
+}
+
+function removeFromFavorites(id) {
+  let favorites = getLocalStorage('favorites');
+  favorites = favorites.filter(item => item !== id);
+  setLocalStorage('favorites', favorites);
 }
 
 // Quick-view
@@ -85,3 +112,22 @@ export async function openQuickView(id) {
     }
   });
 }
+
+//Adding to favorites with icon
+document.querySelector('.recipe-list').addEventListener('click', (event) => {
+  if (event.target.classList.contains('fav-icon')) {
+    const favIcon = event.target;
+    const recipeId = favIcon.dataset.recipeId;
+
+    let favorites = getLocalStorage('favorites');
+    if (favorites.includes(recipeId)) {
+      removeFromFavorites(recipeId);
+      favIcon.textContent = '♡';
+    } else {
+      addToFavorites(recipeId);
+      favIcon.textContent = '🩵';
+    }
+  }
+})
+
+initializeRecipes();

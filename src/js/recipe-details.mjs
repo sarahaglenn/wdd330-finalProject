@@ -4,6 +4,7 @@ import { recommendedTemplate } from './templates.mjs';
 import { checkLogin, loadLoggedInButtons, logout } from './auth.mjs';
 
 let recipe = {};
+setLocalStorage('redirectUrl', window.location.href);
 loadHeaderFooter().then(() => {
   if (checkLogin()) loadLoggedInButtons();
   const logoutBtn = document.getElementById('logout');
@@ -34,10 +35,10 @@ async function recipeDetails(id) {
 
 document.getElementById('addToFavorites').addEventListener('click', () => {
   if (!checkLogin()) {
-    alert('Please log in to save to favorites. <br> Click OK to go to login page.>)');
+    alert('Please log in to save to favorites.');
     const currentUrl = window.location.href;
     setTimeout(() => {
-      window.location.href = `/login/index.html?redirect=${encodeURIComponent(currentUrl)}}`
+      window.location.href = `/login/index.html?redirect=${encodeURIComponent(currentUrl)}`
     }, 4000)
   } else {
     addToFavorites(recipeId);

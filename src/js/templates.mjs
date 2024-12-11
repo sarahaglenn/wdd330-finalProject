@@ -1,17 +1,34 @@
+import { checkLogin } from './auth.mjs';
+import { getLocalStorage } from './utils.mjs';
+
 export function recipeCardTemplate(recipeData) {
   let imageSrc;
+  let icon;
   if (recipeData.image) {
     imageSrc = recipeData.image;
   } else imageSrc = `https://spoonacular.com/recipeImages/${recipeData.id}-556x370.${recipeData.imageType}`;
-    return `
-    <li class='recipe-card'>
+
+  const favorites = getLocalStorage('favorites') || [];
+  if (!favorites.includes(JSON.stringify(recipeData.id))) {
+    icon = '♡';
+  } else {
+    icon = '🩵';
+  }
+  const iconClass = checkLogin() ? 'shown' : 'hidden';
+  console.log('iconClass', iconClass);
+
+  return `
+    <li class="recipe-card">
+    <div class="icon-container ${iconClass}">
+    <i class="fav-icon" data-recipe-id="${recipeData.id}" aria-label="Add to Favorites">${icon}</i>
+    </div>
     <a href="/recipe-details/index.html?recipe=${recipeData.id}">
     <img src="${imageSrc}"
     alt="${recipeData.title}"
-    />
+     loading="lazy" />
+     </a>
     <h2 class="recipe-name">${recipeData.title}</h2>
-    </a>
-    <button class="quick-details" class="quick-details" id="quick-view-btn" value="${recipeData.id}" >Quick View</button>
+    <button class="quick-details" class="quick-details" id="quick-view-btn" value="${recipeData.id}" aria-label="Quick View ${recipeData.title}">Quick View</button>
     </li>
     `;
 }

@@ -4,6 +4,7 @@ import { recipeCardTemplate } from './templates.mjs';
 import { checkLogin } from './auth.mjs';
 import { openQuickView } from './recipe-list.mjs';
 
+localStorage.removeItem('category');
 if (!checkLogin()) {
   document.querySelector('.favoritesMain').innerHTML = `<p>Unauthorized access. Please log in. </p>`;
 }
