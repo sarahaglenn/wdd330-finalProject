@@ -25,6 +25,7 @@ async function loadFavorites() {
   }
   const sortedRecipes = sortRecipes(recipes, sortBy);
   renderRecipes(sortedRecipes);
+  document.querySelector('h2').innerText = '';
 }
 
 const sortDropdown = document.getElementById('sort-by');
