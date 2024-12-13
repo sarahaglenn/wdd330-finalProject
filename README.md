@@ -1,8 +1,12 @@
-# spiceoflife
+# Spice of Life
 
 ## Description
 
 Simple recipe finder and meal planner application. 
+
+## Deployed website
+
+- https://spiceoflife.netlify.app/
 
 ## Setup
 
