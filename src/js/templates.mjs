@@ -15,7 +15,6 @@ export function recipeCardTemplate(recipeData) {
     icon = '🩵';
   }
   const iconClass = checkLogin() ? 'shown' : 'hidden';
-  console.log('iconClass', iconClass);
 
   return `
     <li class="recipe-card">
